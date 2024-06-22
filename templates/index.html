@@ -24,7 +24,7 @@
             <div class="code-container">
                 <pre><code>import requests
 
-response = requests.get('http://127.0.0.1:5000/random')
+response = requests.get('https://cafe-api-five.vercel.app/random')
 print(response.json())</code></pre>
                 <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
             </div>
@@ -55,7 +55,7 @@ print(response.json())</code></pre>
             <div class="code-container">
                 <pre><code>import requests
 
-response = requests.get('http://127.0.0.1:5000/all-cafe')
+response = requests.get('https://cafe-api-five.vercel.app/all-cafe')
 print(response.json())</code></pre>
                 <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
             </div>
@@ -103,7 +103,7 @@ print(response.json())</code></pre>
                 <pre><code>import requests
 
 params = {'loc': 'Downtown'}
-response = requests.get('http://127.0.0.1:5000/search', params=params)
+response = requests.get('https://cafe-api-five.vercel.app/search', params=params)
 print(response.json())</code></pre>
                 <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
             </div>
@@ -153,7 +153,7 @@ data = {
     'coffee_price': '$5.00'
 }
 
-response = requests.post('http://127.0.0.1:5000/add', data=data)
+response = requests.post('https://cafe-api-five.vercel.app/add', data=data)
 print(response.json())</code></pre>
                 <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
             </div>
@@ -177,7 +177,7 @@ print(response.json())</code></pre>
                 <pre><code>import requests
 
 data = {'coffee_price': '$4.50'}
-response = requests.patch('http://127.0.0.1:5000/update-price/1', data=data)
+response = requests.patch('https://cafe-api-five.vercel.app/update-price/1', data=data)
 print(response.json())</code></pre>
                 <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
             </div>
@@ -212,7 +212,7 @@ print(response.json())</code></pre>
                 <pre><code>import requests
 
 params = {'api-key': 'ram'}
-response = requests.delete('http://127.0.0.1:5000/delete-cafe/1', params=params)
+response = requests.delete('https://cafe-api-five.vercel.app/delete-cafe/1', params=params)
 print(response.json())</code></pre>
                 <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
             </div>
