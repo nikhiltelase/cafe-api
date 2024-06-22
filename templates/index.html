@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe API Documentation</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Cafe API Documentation</h1>
+        <p>Welcome to the Cafe API documentation. This API allows you to manage a database of cafes, including retrieving details about cafes, searching for cafes by location, adding new cafes, updating cafe details, and deleting cafes. Below are the details for each endpoint along with examples of how to use them in Python.</p>
+
+        <h2>Endpoints</h2>
+
+        <div class="endpoint">
+            <h3>1. Get Random Cafe</h3>
+            <p><strong>URL:</strong> <code>/random</code></p>
+            <p><strong>Method:</strong> GET</p>
+            <p><strong>Description:</strong> Fetches a random cafe from the database.</p>
+            <h4>Python Example:</h4>
+            <div class="code-container">
+                <pre><code>import requests
+
+response = requests.get('http://127.0.0.1:5000/random')
+print(response.json())</code></pre>
+                <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
+            </div>
+            <h4>Expected Response:</h4>
+            <pre class="response"><code>{
+    "cafe": {
+        "id": 1,
+        "name": "Cafe Latte",
+        "map_url": "https://example.com",
+        "img_url": "https://example.com/image.jpg",
+        "location": "Downtown",
+        "seats": "50",
+        "has_toilet": true,
+        "has_wifi": true,
+        "has_sockets": true,
+        "can_take_calls": true,
+        "coffee_price": "$4.00"
+    }
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>2. Get All Cafes</h3>
+            <p><strong>URL:</strong> <code>/all-cafe</code></p>
+            <p><strong>Method:</strong> GET</p>
+            <p><strong>Description:</strong> Fetches all cafes from the database.</p>
+            <h4>Python Example:</h4>
+            <div class="code-container">
+                <pre><code>import requests
+
+response = requests.get('http://127.0.0.1:5000/all-cafe')
+print(response.json())</code></pre>
+                <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
+            </div>
+            <h4>Expected Response:</h4>
+            <pre class="response"><code>{
+    "cafes": [
+        {
+            "id": 1,
+            "name": "Cafe Latte",
+            "map_url": "https://example.com",
+            "img_url": "https://example.com/image.jpg",
+            "location": "Downtown",
+            "seats": "50",
+            "has_toilet": true,
+            "has_wifi": true,
+            "has_sockets": true,
+            "can_take_calls": true,
+            "coffee_price": "$4.00"
+        },
+        {
+            "id": 2,
+            "name": "Cafe Mocha",
+            "map_url": "https://example.com",
+            "img_url": "https://example.com/image2.jpg",
+            "location": "Uptown",
+            "seats": "30",
+            "has_toilet": true,
+            "has_wifi": true,
+            "has_sockets": true,
+            "can_take_calls": true,
+            "coffee_price": "$5.00"
+        }
+    ]
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>3. Search Cafe by Location</h3>
+            <p><strong>URL:</strong> <code>/search</code></p>
+            <p><strong>Method:</strong> GET</p>
+            <p><strong>Description:</strong> Searches for cafes by location.</p>
+            <p><strong>Query Parameter:</strong> <code>loc</code> (location of the cafe)</p>
+            <h4>Python Example:</h4>
+            <div class="code-container">
+                <pre><code>import requests
+
+params = {'loc': 'Downtown'}
+response = requests.get('http://127.0.0.1:5000/search', params=params)
+print(response.json())</code></pre>
+                <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
+            </div>
+            <h4>Expected Response:</h4>
+            <pre class="response"><code>{
+    "cafes": [
+        {
+            "id": 1,
+            "name": "Cafe Latte",
+            "map_url": "https://example.com",
+            "img_url": "https://example.com/image.jpg",
+            "location": "Downtown",
+            "seats": "50",
+            "has_toilet": true,
+            "has_wifi": true,
+            "has_sockets": true,
+            "can_take_calls": true,
+            "coffee_price": "$4.00"
+        }
+    ]
+}</code></pre>
+            <h4>Error Response:</h4>
+            <pre class="response"><code>{
+    "error": "No cafes found at the specified location"
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>4. Add New Cafe</h3>
+            <p><strong>URL:</strong> <code>/add</code></p>
+            <p><strong>Method:</strong> POST</p>
+            <p><strong>Description:</strong> Adds a new cafe to the database.</p>
+            <h4>Python Example:</h4>
+            <div class="code-container">
+                <pre><code>import requests
+
+data = {
+    'name': 'Cafe Mocha',
+    'map_url': 'https://example.com',
+    'img_url': 'https://example.com/image.jpg',
+    'location': 'Uptown',
+    'seats': '30',
+    'has_toilet': True,
+    'has_wifi': True,
+    'has_sockets': True,
+    'can_take_calls': True,
+    'coffee_price': '$5.00'
+}
+
+response = requests.post('http://127.0.0.1:5000/add', data=data)
+print(response.json())</code></pre>
+                <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
+            </div>
+            <h4>Expected Response:</h4>
+            <pre class="response"><code>{
+    "response": "success"
+}</code></pre>
+            <h4>Error Response:</h4>
+            <pre class="response"><code>{
+    "response": "error: this cafe already exists."
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>5. Update Coffee Price</h3>
+            <p><strong>URL:</strong> <code>/update-price/&lt;cafe_id&gt;</code></p>
+            <p><strong>Method:</strong> PATCH</p>
+            <p><strong>Description:</strong> Updates the coffee price of a specified cafe.</p>
+            <h4>Python Example:</h4>
+            <div class="code-container">
+                <pre><code>import requests
+
+data = {'coffee_price': '$4.50'}
+response = requests.patch('http://127.0.0.1:5000/update-price/1', data=data)
+print(response.json())</code></pre>
+                <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
+            </div>
+            <h4>Expected Response:</h4>
+            <pre class="response"><code>{
+    "response": {
+        "success": "Successfully updated the price."
+    }
+}</code></pre>
+            <h4>Error Response:</h4>
+            <pre class="response"><code>{
+    "error": {
+        "Not Found": "Sorry, a cafe with that id was not found in the database."
+    }
+}</code></pre>
+            <h4>Missing Field Response:</h4>
+            <pre class="response"><code>{
+    "error": {
+        "Missing field": "coffee_price is required"
+    }
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3>6. Delete Cafe</h3>
+            <p><strong>URL:</strong> <code>/delete-cafe/&lt;cafe_id&gt;</code></p>
+            <p><strong>Method:</strong> DELETE</p>
+            <p><strong>Description:</strong> Deletes a specified cafe from the database. Requires an API key.</p>
+            <p><strong>Query Parameter:</strong> <code>api-key</code> (API key for authentication)</p>
+            <h4>Python Example:</h4>
+            <div class="code-container">
+                <pre><code>import requests
+
+params = {'api-key': 'ram'}
+response = requests.delete('http://127.0.0.1:5000/delete-cafe/1', params=params)
+print(response.json())</code></pre>
+                <button class="copy-btn" data-clipboard-target="pre code">Copy</button>
+            </div>
+            <h4>Expected Response:</h4>
+            <pre class="response"><code>{
+    "response": {
+        "success": "Successfully deleted cafe."
+    }
+}</code></pre>
+            <h4>Error Response:</h4>
+            <pre class="response"><code>{
+    "error": {
+        "Not Found": "Cafe not found"
+    }
+}</code></pre>
+            <h4>Invalid API Key Response:</h4>
+            <pre class="response"><code>{
+    "error": {
+        "Invalid API Key": "API key is invalid"
+    }
+}</code></pre>
+        </div>
+
+        <h3>Contact</h3>
+        <p>If you have any questions or need further assistance, feel free to contact us at.</p>
+        <div>
+            <a href=""><i class='bx bxl-linkedin-square'></i>https://www.linkedin.com/in/nikhiltelase/</a>
+            <a href=""><i class='bx bxl-github' ></i>https://github.com/nikhiltelase/cafe-api</a>
+            <a href="mailto:nikhiltelase@gmail.com"><i class='bx bxl-gmail' ></i></a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script>
+        var clipboard = new ClipboardJS('.copy-btn');
+        clipboard.on('success', function(e) {
+            e.trigger.textContent = 'Copied!';
+            setTimeout(function() {
+                e.trigger.textContent = 'Copy';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
