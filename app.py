@@ -97,12 +97,9 @@ def add():
     db.session.add(new_cafe)
     try:
         db.session.commit()
-        response = "success"
+        return jsonify({"response": "success"})
     except IntegrityError:
-        db.session.rollback()
-        response = "error: this cafe already exists."
-
-    return jsonify({"response": response})
+        return jsonify({"error": "this cafe already exists."})
 
 
 @app.route("/update-price/<int:cafe_id>", methods=['PATCH'])
